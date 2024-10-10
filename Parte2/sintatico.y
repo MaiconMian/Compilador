@@ -1,3 +1,11 @@
+%{
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "lexico.c"
+%}
+
 %token T_PROGRAMA
 %token T_INICIO
 %token T_FIMPROG
@@ -13,13 +21,9 @@
 %token T_MAIS
 %token T_MENOS
 %token T_VEZES
-%token T_DIV
 %token T_MAIOR
 %token T_MENOR
-%token T_VEZES
 %token T_DIV
-%token T_MAIOR
-%token T_MENOR
 %token T_IGUAL
 %token T_E
 %token T_OU 
@@ -91,7 +95,7 @@ repeticao
     ;
 
 selecao 
-    | T_SE expressao T_ENTAO lista_comandos T_SENAO lista_comandos T_FIMSE
+    : T_SE expressao T_ENTAO lista_comandos T_SENAO lista_comandos T_FIMSE
     ;
 
 atribuicao
@@ -121,3 +125,9 @@ termo
     ;
 
 %%
+
+int main() {
+    yyparse();
+    puts("programa ok!");
+    return 0;
+}
